@@ -2,7 +2,7 @@
 	import { FILTER } from "$lib";
 	import type { HeroPreview } from "$types";
 	import { onMount } from "svelte";
-	import Complexity from "./Complexity.svelte";
+	import Diamond from "./Diamond.svelte";
 
 
   export let hero: HeroPreview;
@@ -36,7 +36,7 @@
         style="transition-delay: {(i + 1) * 8}0ms;
               filter: drop-shadow(-1px 1px 1px black);"
       >
-        <Complexity/>
+        <Diamond/>
       </div>
     {/each}
   </div>

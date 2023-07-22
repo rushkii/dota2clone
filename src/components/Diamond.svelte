@@ -1,6 +1,3 @@
-<script lang="ts">
-</script>
-
 <div class="diamond group-hover:hover"/>
 
 <style>
