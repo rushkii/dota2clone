@@ -1,1 +1,4 @@
-// place files you want to import through the `$lib` alias in this folder.
+import { FILTER, ALPHABET } from "./constants";
+
+
+export { FILTER, ALPHABET };
