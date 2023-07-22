@@ -75,12 +75,12 @@
 
 </script>
 
-<!-- Display searched hero by name. -->
-{#if search !== ""}
+<!-- Display searched hero by name. WIP -->
+<!-- {#if search !== ""}
   <div class="fixed min-h-screen w-full justify-center items-center z-[100] text-5xl font-semibold">
     {search}
   </div>
-{/if}
+{/if} -->
 
 <div class="px-5 lg:px-16 xl:px-24 py-20 xl:py-24 space-y-3 lg:space-y-4 xl:space-y-5 flex-col justify-center items-center">
   <div class="xl:space-y-3 text-center select-none">
