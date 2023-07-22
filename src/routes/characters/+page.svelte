@@ -124,8 +124,6 @@
 
   </div>
 
-  <!-- <div class="bg-black">{filtComp.toString()}</div> -->
-
   <!-- Display heroes with flex wrap.  -->
   <div class="flex flex-wrap justify-center items-center gap-4" data-sveltekit-preload-data="off"> <!-- grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 -->
     {#each filterHeroes as hero, index (hero.name)}
