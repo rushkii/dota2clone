@@ -2,14 +2,13 @@
   import HeroBox from "$components/HeroBox.svelte";
 	import { ALPHABET, FILTER } from "$lib";
 	import type { HeroPreview } from "$types";
-	import { onMount } from "svelte";
   import type { PageServerData } from "./$types";
 
   export let data: PageServerData;
 
   let search: string = "";
   let filtAttr: number | null = null;
-  let filtComp: number[] = [];
+  let filtComp: number | null = null;
   let selectAll: boolean = false;
 
   // Sort heroes data by ascending alphabetically.
@@ -55,19 +54,15 @@
     filtAttr = index === filtAttr ? null : index;
   }
 
-  const multiSelectFilterComp = (index: number) => {
-    if(filtComp.includes(index)) {
-      let idx = filtComp.indexOf(index);
-      filtComp.splice(idx, 1);
-      return;
-    }
-    filtComp.push(index);
+  const selectFilterComp = (index: number) => {
+    filtComp = index === filtComp ? null : index;
   }
 
   let filterHeroes: HeroPreview[];
-  $: if(filtAttr !== null) {
+  $: if(filtAttr !== null || filtComp !== null) {
     filterHeroes = heroes.filter(hero =>
-      (hero.primary_attr === filtAttr)
+      (hero.primary_attr === filtAttr) ||
+      (hero.complexity === (filtComp !== null ? filtComp + 1 : filtComp))
     );
   } else {
     filterHeroes = heroes;
@@ -112,15 +107,15 @@
     </div>
 
     <!-- Filter complexity UI. -->
-    <div class="flex space-x-2 items-center text-[#96a0ae] {!!filtComp.length? 'text-shadow text-[#e9ecf2]' : ''}">
+    <div class="flex space-x-2 items-center text-[#96a0ae] {filtComp !== null? 'text-shadow text-[#e9ecf2]' : ''}">
       <div>Complexity</div>
       <div class="flex space-x-1">
         {#each Array(3) as _, index}
-          <button on:click={() => multiSelectFilterComp(index)}>
+          <button on:click={() => {selectFilterComp(index)}}>
             <img
               src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-diamond.png"
               alt="" width="40" height="40" draggable="false"
-              class="cursor-pointer {!filtComp.includes(index)? 'color-transform' : 'shadow-transform'}"
+              class="cursor-pointer {!(filtComp !== null ? index <= filtComp : false)? 'color-transform' : 'shadow-transform'}"
             >
           </button>
         {/each}
