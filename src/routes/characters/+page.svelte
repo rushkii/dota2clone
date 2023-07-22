@@ -133,6 +133,10 @@
 
 </div>
 
+<svelte:head>
+  <title>Dota 2 Clone | Heroes</title>
+</svelte:head>
+
 <!-- Keyboard keypress event. -->
 <svelte:window on:keydown|preventDefault={onKeyDown} />
 
