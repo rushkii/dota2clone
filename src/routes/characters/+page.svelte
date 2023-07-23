@@ -58,16 +58,10 @@
     filtComp = index === filtComp ? null : index;
   }
 
-  let filterHeroes: HeroPreview[];
-  $: if(filtAttr !== null || filtComp !== null) {
-    filterHeroes = heroes.filter(hero =>
-      (hero.primary_attr === filtAttr) ||
-      (hero.complexity === (filtComp !== null ? filtComp + 1 : filtComp))
-    );
-  } else {
-    filterHeroes = heroes;
-  }
-
+  $: filteredHeroes = heroes.filter(hero =>
+    (filtAttr === null || hero.primary_attr === filtAttr) &&
+    (filtComp === null || hero.complexity === filtComp + 1)
+  );
 </script>
 
 <!-- Display searched hero by name. WIP -->
@@ -126,7 +120,7 @@
 
   <!-- Display heroes with flex wrap.  -->
   <div class="flex flex-wrap justify-center items-center gap-4" data-sveltekit-preload-data="off"> <!-- grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 -->
-    {#each filterHeroes as hero, index (hero.name)}
+    {#each filteredHeroes as hero, index (hero.name)}
       <HeroBox hero={hero} index={index}/>
     {/each}
   </div>
