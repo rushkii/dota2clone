@@ -92,8 +92,8 @@
         {#each FILTER as filt, index}
           <button on:click={() => selectFilterAttr(index)}>
             <img
-              src="{filt.attr}" alt="" width="40" height="40" draggable="false"
-              class="cursor-pointer {!(filtAttr === index)? 'color-transform' : 'shadow-transform'}"
+              src="{filt.attr}" alt="" draggable="false"
+              class="cursor-pointer w-[35px] xl:w-[40px] {!(filtAttr === index)? 'color-transform' : 'shadow-transform'}"
             >
           </button>
         {/each}
@@ -108,8 +108,8 @@
           <button on:click={() => {selectFilterComp(index)}}>
             <img
               src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-diamond.png"
-              alt="" width="40" height="40" draggable="false"
-              class="cursor-pointer {!(filtComp !== null ? index <= filtComp : false)? 'color-transform' : 'shadow-transform'}"
+              alt="" draggable="false"
+              class="cursor-pointer w-[35px] xl:w-[40px] {!(filtComp !== null ? index <= filtComp : false)? 'color-transform' : 'shadow-transform'}"
             >
           </button>
         {/each}

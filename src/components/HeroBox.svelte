@@ -29,7 +29,7 @@
         --index: {index};"
   draggable="false"
 >
-  <div class="flex space-x-1 absolute top-1 right-2">
+  <div class="flex space-x-1 absolute top-0 right-0 xl:top-1 xl:right-2 scale-[.6] xl:scale-100">
     {#each Array(hero.complexity) as _, i}
       <div
         class="transition group-hover:translate-y-0 -translate-y-8 duration-300"
@@ -40,9 +40,14 @@
       </div>
     {/each}
   </div>
-  <div class="flex items-center absolute bottom-1 group-hover:translate-y-0 group-hover:opacity-100 group-hover:scale-100 translate-y-8 opacity-0 scale-70 transition duration-300 px-3 space-x-2">
-    <img src="{FILTER[hero.primary_attr].attr_hero}" alt="" width="40" height="40">
-    <div class="text-xl uppercase select-none font-reaver font-semibold">{hero.name_english_loc}</div>
+  <div class="flex items-center absolute bottom-1 group-hover:translate-y-0 group-hover:opacity-100 group-hover:scale-100 translate-y-8 opacity-0 scale-70 transition duration-300 px-1 xl:px-3 space-x-2">
+    <img
+      src="{FILTER[hero.primary_attr].attr_hero}" alt=""
+      class="w-[25px] xl:w-[40px]"
+    >
+    <div class="text-xs md:text-sm xl:text-xl uppercase select-none font-reaver font-semibold">
+      {hero.name_english_loc}
+    </div>
   </div>
   <div
     class="absolute bottom-0 w-[256px] h-[70px] -z-50 transition duration-300 group-hover:opacity-100 opacity-0"
