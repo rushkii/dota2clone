@@ -7,7 +7,7 @@
     border: 10px solid transparent;
     border-bottom-color: white;
     position: relative;
-    top: -10px;
+    top: -9.5px;
   }
 
   .diamond.group-hover\:hover {
@@ -16,14 +16,14 @@
     border: 10px solid transparent;
     border-bottom-color: white;
     position: relative;
-    top: -9.1px;
+    top: -10px;
   }
 
   .diamond:after {
     content: '';
     position: absolute;
     left: -10px;
-    top: 10px;
+    top: 9.5px;
     width: 0;
     height: 0;
     border: 10px solid transparent;
@@ -34,7 +34,7 @@
     content: '';
     position: absolute;
     left: -10px;
-    top: 9.1px;
+    top: 10px;
     width: 0;
     height: 0;
     border: 10px solid transparent;
