@@ -31,6 +31,7 @@
     ) {
       // If condition are met, then append string the pressed key.
       search += e.key.toLowerCase();
+      selectAll = false
     }
 
     //  Check if CTRL + A or select all met this condition.
@@ -64,12 +65,6 @@
   );
 </script>
 
-<!-- Display searched hero by name. WIP -->
-<!-- {#if search !== ""}
-  <div class="fixed min-h-screen w-full justify-center items-center z-[100] text-5xl font-semibold">
-    {search}
-  </div>
-{/if} -->
 
 <div class="px-5 lg:px-16 xl:px-24 py-20 xl:py-24 space-y-3 lg:space-y-4 xl:space-y-5 flex-col justify-center items-center">
   <div class="xl:space-y-3 text-center select-none">
@@ -116,6 +111,12 @@
       </div>
     </div>
 
+  </div>
+
+  <div class="flex justify-center text-2xl font-reaver font-semibold uppercase">
+    <div class="{selectAll && search.length > 0 ? "bg-gray-400": ""} w-max px-1 rounded-sm">
+      {search}
+    </div>
   </div>
 
   <!-- Display heroes with flex wrap.  -->
