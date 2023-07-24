@@ -1,7 +1,7 @@
 <script lang="ts">
   import HeroBox from "$components/HeroBox.svelte";
-	import { ALPHABET, FILTER } from "$lib";
-	import type { HeroPreview } from "$types";
+  import { ALPHABET, FILTER } from "$lib";
+  import type { HeroPreview } from "$types";
   import type { PageServerData } from "./$types";
 
   export let data: PageServerData;

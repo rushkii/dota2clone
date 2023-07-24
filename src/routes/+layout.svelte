@@ -1,7 +1,7 @@
 <script lang="ts">
   import "../app.css";
-	import Navigations from "$components/Navigations.svelte";
-	import { onMount } from "svelte";
+  import Navigations from "$components/Navigations.svelte";
+  import { onMount } from "svelte";
 
   const playlist = [
     "/audio/lobby_music_orchestra.mp3",
@@ -14,14 +14,14 @@
 
   const next = () => {
     console.log("next:", songIndex)
-		if (songIndex === playlist.length - 1) {
+    if (songIndex === playlist.length - 1) {
         songIndex = 0;
     } else {
         songIndex++;
     }
     console.log("next:", songIndex)
     play();
-	}
+  }
 
   const play = () => {
     if(song?.paused) {
