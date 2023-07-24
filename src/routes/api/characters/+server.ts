@@ -9,5 +9,5 @@ const getCharacters = async () => {
 
 
 export async function GET() {
-	return json(await getCharacters());
+  return json(await getCharacters());
 }
