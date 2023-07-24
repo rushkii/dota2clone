@@ -1,6 +1,6 @@
 <div class="absolute px-5 lg:px-6 xl:px-7 py-4 xl:py-5">
   <div>
-    <a href="/" class="transition-opacity cursor-pointer relative w-max">
+    <a href="/" class="transition-opacity cursor-pointer relative w-max" draggable="false">
       <img
         id="glow-logo"
         src="/images/dota2_logo.png" alt="logo"
