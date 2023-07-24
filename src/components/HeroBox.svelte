@@ -29,14 +29,14 @@
         --index: {index};"
   draggable="false"
 >
-  <div class="flex space-x-1 absolute top-0 right-0 xl:top-1 xl:right-2 scale-[.6] xl:scale-100">
-    {#each Array(hero.complexity) as _, i}
+  <div class="flex space-x-1 xl:space-x-2 absolute top-1 right-2 xl:top-2 xl:right-2">
+    {#each Array(3) as _, i}
       <div
         class="transition group-hover:translate-y-0 -translate-y-8 duration-300"
         style="transition-delay: {(i + 1) * 8}0ms;
               filter: drop-shadow(-1px 1px 1px black);"
       >
-        <Diamond/>
+        <div class="w-2 h-2 xl:w-3 xl:h-3 border rotate-45 {hero.complexity >= i + 1 ? "bg-white" : ""}"/>
       </div>
     {/each}
   </div>
