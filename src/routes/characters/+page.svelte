@@ -122,8 +122,8 @@
 
   <!-- Display heroes with flex wrap.  -->
   <div class="flex flex-wrap justify-center items-center gap-4" data-sveltekit-preload-data="off"> <!-- grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 -->
-    {#each filteredHeroes as hero, index (hero.name)}
-      <HeroBox hero={hero} index={index}/>
+    {#each filteredHeroes as hero (hero.name)}
+      <HeroBox hero={hero}/>
     {/each}
   </div>
 
