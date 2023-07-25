@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { FILTER } from "$lib";
+  import { FILTER, getHeroThumbnail } from "$lib";
   import type { HeroPreview } from "$types";
   import { onMount } from "svelte";
 
@@ -7,10 +7,6 @@
   export let hero: HeroPreview;
   export let index: number;
   let loaded: boolean = false;
-
-  const getHeroThumbnail = (name: string) => {
-    return `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${name.replace("npc_dota_hero_", "")}.png`;
-  }
 
   onMount(() => {
     loaded = true;
