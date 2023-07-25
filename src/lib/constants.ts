@@ -22,4 +22,4 @@ export const FILTER = [
 ]
 
 const CHAR_CODES = Array.from(Array(26)).map((_, i) => i + 65);
-export const ALPHABET = CHAR_CODES.map((x) => String.fromCharCode(x).toLowerCase());
+export const ALLOWED_ASCII = ["-", "_", ...CHAR_CODES.map((x) => String.fromCharCode(x).toLowerCase())];

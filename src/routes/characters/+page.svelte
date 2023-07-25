@@ -1,6 +1,6 @@
 <script lang="ts">
   import HeroBox from "$components/HeroBox.svelte";
-  import { ALPHABET, FILTER } from "$lib";
+  import { ALLOWED_ASCII, FILTER } from "$lib";
   import type { HeroPreview } from "$types";
   import type { PageServerData } from "./$types";
 
@@ -26,8 +26,8 @@
   const onKeyDown = (e: KeyboardEvent) => {
     // Check if pressed key containing alphabet and only accept shift key.
     if(
-      (ALPHABET.includes(e.key.toLowerCase()) && e.shiftKey) ||
-      (ALPHABET.includes(e.key.toLowerCase()) && !(e.ctrlKey || e.altKey))
+      (ALLOWED_ASCII.includes(e.key.toLowerCase()) && e.shiftKey) ||
+      (ALLOWED_ASCII.includes(e.key.toLowerCase()) && !(e.ctrlKey || e.altKey))
     ) {
       // If condition are met, then append string the pressed key.
       search += e.key.toLowerCase();
@@ -61,7 +61,8 @@
 
   $: filteredHeroes = heroes.filter(hero =>
     (filtAttr === null || hero.primary_attr === filtAttr) &&
-    (filtComp === null || hero.complexity === filtComp + 1)
+    (filtComp === null || hero.complexity === filtComp + 1) &&
+    (search === "" || hero.name_english_loc.toLowerCase().includes(search))
   );
 </script>
 
