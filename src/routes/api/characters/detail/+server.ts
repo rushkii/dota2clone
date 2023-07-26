@@ -8,5 +8,5 @@ const getCharacterDetail = async (id: string) => {
 }
 
 export const GET = ( async ({ url }) => {
-	return json(await getCharacterDetail(url.searchParams.get("id") ?? "0"));
+  return json(await getCharacterDetail(url.searchParams.get("id") ?? "0"));
 }) satisfies RequestHandler;
