@@ -3,7 +3,7 @@ export const getHeroThumbnail = (name: string) => {
 }
 
 export const getHeroAttackType = (type: number) => {
-  return `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/${type ? 'ranged' : 'meele'}.svg`
+  return `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/${type === 1 ? 'melee' : 'ranged'}.svg`
 }
 
 export const getHeroAnimation = (name: string, extension: string = "webm") => {
