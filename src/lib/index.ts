@@ -1,8 +1,9 @@
-import { FILTER, ALLOWED_ASCII, ROLE_LEVELS_WIDTH } from "./constants";
+import { FILTER, ALLOWED_ASCII, ROLE_LEVELS_WIDTH, ROLES } from "./constants";
 import { getHeroThumbnail, getHeroAttackType, getHeroAnimation } from "./functions";
 
 
 export {
+  ROLES,
   FILTER,
   ALLOWED_ASCII,
   ROLE_LEVELS_WIDTH,

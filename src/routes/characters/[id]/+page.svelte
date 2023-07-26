@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { FILTER, ROLE_LEVELS_WIDTH, getHeroAnimation, getHeroAttackType, getHeroThumbnail } from "$lib";
+  import { ROLES, FILTER, ROLE_LEVELS_WIDTH, getHeroAnimation, getHeroAttackType, getHeroThumbnail } from "$lib";
   import type { HeroDetail } from "$types";
   import type { PageData } from "./$types";
 
@@ -160,96 +160,18 @@
       </div>
       <div class="flex flex-col items-center px-10 border-x border-x-[#4f4f4f]">
         <div class="flex flex-wrap max-w-md gap-4">
-          <div class="flex flex-col w-[30%] h-[35px]">
-            <div class="font-radiance font-semibold">Carry</div>
-            <div class="w-full bg-white h-[6px] max-h-[6px] relative mt-1 flex-grow">
-              <div class="absolute top-0 left-0 w-full h-full bg-[#4c4c4c]"/>
-              <div
-                class="absolute top-0 left-0 animate-bar {ROLE_LEVELS_WIDTH[hero.role_levels[0]]} h-full bg-white"
-                style="box-shadow: 0px 0px 10px #427ed1, 0px 0px 10px #427ed1;"
-              />
+          {#each ROLES as role, index}
+            <div class="flex flex-col w-[30%] h-[35px]">
+              <div class="font-radiance font-semibold select-none">{role}</div>
+              <div class="w-full bg-white h-[6px] max-h-[6px] relative mt-1 flex-grow">
+                <div class="absolute top-0 left-0 w-full h-full bg-[#4c4c4c]"/>
+                <div
+                  class="absolute top-0 left-0 animate-bar {ROLE_LEVELS_WIDTH[hero.role_levels[index]]} h-full bg-white"
+                  style="box-shadow: 0px 0px 10px #427ed1, 0px 0px 10px #427ed1;"
+                />
+              </div>
             </div>
-          </div>
-          <div class="flex flex-col w-[30%] h-[35px]">
-            <div class="font-radiance font-semibold">Support</div>
-            <div class="w-full bg-white h-[6px] max-h-[6px] relative mt-1 flex-grow">
-              <div class="absolute top-0 left-0 w-full h-full bg-[#4c4c4c]"/>
-              <div
-                class="absolute top-0 left-0 animate-bar {ROLE_LEVELS_WIDTH[hero.role_levels[1]]} h-full bg-white"
-                style="box-shadow: 0px 0px 10px #427ed1, 0px 0px 10px #427ed1;"
-              />
-            </div>
-          </div>
-          <div class="flex flex-col w-[30%] h-[35px]">
-            <div class="font-radiance font-semibold">Nuker</div>
-            <div class="w-full bg-white h-[6px] max-h-[6px] relative mt-1 flex-grow">
-              <div class="absolute top-0 left-0 w-full h-full bg-[#4c4c4c]"/>
-              <div
-                class="absolute top-0 left-0 animate-bar {ROLE_LEVELS_WIDTH[hero.role_levels[2]]} h-full bg-white"
-                style="box-shadow: 0px 0px 10px #427ed1, 0px 0px 10px #427ed1;"
-              />
-            </div>
-          </div>
-          <div class="flex flex-col w-[30%] h-[35px]">
-            <div class="font-radiance font-semibold">Disabler</div>
-            <div class="w-full bg-white h-[6px] max-h-[6px] relative mt-1 flex-grow">
-              <div class="absolute top-0 left-0 w-full h-full bg-[#4c4c4c]"/>
-              <div
-                class="absolute top-0 left-0 animate-bar {ROLE_LEVELS_WIDTH[hero.role_levels[3]]} h-full bg-white"
-                style="box-shadow: 0px 0px 10px #427ed1, 0px 0px 10px #427ed1;"
-              />
-            </div>
-          </div>
-          <div class="flex flex-col w-[30%] h-[35px]">
-            <div class="font-radiance font-semibold">Jungler</div>
-            <div class="w-full bg-white h-[6px] max-h-[6px] relative mt-1 flex-grow">
-              <div class="absolute top-0 left-0 w-full h-full bg-[#4c4c4c]"/>
-              <div
-                class="absolute top-0 left-0 animate-bar {ROLE_LEVELS_WIDTH[hero.role_levels[4]]} h-full bg-white"
-                style="box-shadow: 0px 0px 10px #427ed1, 0px 0px 10px #427ed1;"
-              />
-            </div>
-          </div>
-          <div class="flex flex-col w-[30%] h-[35px]">
-            <div class="font-radiance font-semibold">Durable</div>
-            <div class="w-full bg-white h-[6px] max-h-[6px] relative mt-1 flex-grow">
-              <div class="absolute top-0 left-0 w-full h-full bg-[#4c4c4c]"/>
-              <div
-                class="absolute top-0 left-0 animate-bar {ROLE_LEVELS_WIDTH[hero.role_levels[5]]} h-full bg-white"
-                style="box-shadow: 0px 0px 10px #427ed1, 0px 0px 10px #427ed1;"
-              />
-            </div>
-          </div>
-          <div class="flex flex-col w-[30%] h-[35px]">
-            <div class="font-radiance font-semibold">Escape</div>
-            <div class="w-full bg-white h-[6px] max-h-[6px] relative mt-1 flex-grow">
-              <div class="absolute top-0 left-0 w-full h-full bg-[#4c4c4c]"/>
-              <div
-                class="absolute top-0 left-0 animate-bar {ROLE_LEVELS_WIDTH[hero.role_levels[6]]} h-full bg-white"
-                style="box-shadow: 0px 0px 10px #427ed1, 0px 0px 10px #427ed1;"
-              />
-            </div>
-          </div>
-          <div class="flex flex-col w-[30%] h-[35px]">
-            <div class="font-radiance font-semibold">Pusher</div>
-            <div class="w-full bg-white h-[6px] max-h-[6px] relative mt-1 flex-grow">
-              <div class="absolute top-0 left-0 w-full h-full bg-[#4c4c4c]"/>
-              <div
-                class="absolute top-0 left-0 animate-bar {ROLE_LEVELS_WIDTH[hero.role_levels[7]]} h-full bg-white"
-                style="box-shadow: 0px 0px 10px #427ed1, 0px 0px 10px #427ed1;"
-              />
-            </div>
-          </div>
-          <div class="flex flex-col w-[30%] h-[35px]">
-            <div class="font-radiance font-semibold">Initiator</div>
-            <div class="w-full bg-white h-[6px] max-h-[6px] relative mt-1 flex-grow">
-              <div class="absolute top-0 left-0 w-full h-full bg-[#4c4c4c]"/>
-              <div
-                class="absolute top-0 left-0 animate-bar {ROLE_LEVELS_WIDTH[hero.role_levels[8]]} h-full bg-white"
-                style="box-shadow: 0px 0px 10px #427ed1, 0px 0px 10px #427ed1;"
-              />
-            </div>
-          </div>
+          {/each}
         </div>
         <div class="pt-5 font-radiance text-xl uppercase text-[#959595] tracking-widest">
           Roles
