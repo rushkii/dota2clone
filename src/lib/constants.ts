@@ -21,5 +21,8 @@ export const FILTER = [
   }
 ]
 
+// Role levels width of TailwindCSS
+export const ROLE_LEVELS_WIDTH = ["w-0", "w-1/3", "w-2/3", "w-full"]
+
 const CHAR_CODES = Array.from(Array(26)).map((_, i) => i + 65);
 export const ALLOWED_ASCII = ["-", "_", ...CHAR_CODES.map((x) => String.fromCharCode(x).toLowerCase())];
