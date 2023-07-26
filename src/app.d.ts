@@ -55,7 +55,7 @@ interface HeroDetail {
   talents: Talent[]
 }
 
-interface Ability {
+export interface Ability {
   id: number
   name: string
   name_loc: string
