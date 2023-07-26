@@ -1,14 +1,12 @@
 <script lang="ts">
   import { FILTER, ROLE_LEVELS_WIDTH, getHeroAnimation, getHeroAttackType, getHeroThumbnail } from "$lib";
   import type { HeroDetail } from "$types";
-  import { onMount } from "svelte";
   import type { PageData } from "./$types";
 
 
   export let data: PageData;
   let dataPromise: Promise<HeroDetail>;
   let readStory: boolean = false;
-  let loaded: boolean = false;
 
   const getDetail = async () => {
     const req = await fetch(`/api/characters/detail?id=${data.id}`)
@@ -16,10 +14,6 @@
   }
 
   dataPromise = getDetail();
-
-  onMount(() => {
-    loaded = true;
-  })
 </script>
 
 
@@ -36,7 +30,7 @@
     <div class="relative px-[4.4rem] h-[80vh] overflow-hidden">
       <div class="absolute flex flex-col space-y-3 pt-28 px-20 w-[665px] z-50 animate-to-top">
         <div class="flex flex-col">
-          <div class="text-6xl font-semibold font-reaver uppercase">
+          <div class="{hero.name_loc.split(" ").length > 1? "text-4xl": "text-6xl"} font-semibold font-reaver uppercase">
             {hero.name_loc}
           </div>
           <div class="font-radiance font-semibold text-lg tracking-widest text-[#a5e0f3] uppercase">
@@ -50,18 +44,18 @@
           <div
             on:click={() => readStory = !readStory}
             aria-hidden
-            class="underline text-[#8a8a8a] hover:text-[#ddd] select-none cursor-pointer"
+            class="underline text-[#8a8a8a] hover:text-[#ddd] select-none cursor-pointer w-max"
           >
             {!readStory? "Read" : "Close"} Full History
           </div>
         </div>
-        <div class="flex space-x-5 font-radiance uppercase tracking-widest font-semibold pt-2">
+        <div class="flex space-x-5 font-radiance uppercase tracking-widest font-semibold pt-2 select-none">
           <div>
             <div class="text-[#959595]">Attack Type</div>
             <div class="flex justify-center space-x-2 pt-1">
               <img
                 src={getHeroAttackType(hero.attack_capability)}
-                alt="" width="24"
+                alt="" width="24" draggable="false"
               >
               <div>{hero.attack_capability === 1 ? "melee": "ranged"}</div>
             </div>
@@ -84,7 +78,7 @@
           <div class="flex flex-col items-center">
             <div class="text-[#959595]">Attribute</div>
             <div class="flex items-center space-x-2 pt-1">
-              <img src="{FILTER[hero.primary_attr].attr_hero}" alt="" width="24">
+              <img src="{FILTER[hero.primary_attr].attr_hero}" alt="" width="24" draggable="false">
               <div>{FILTER[hero.primary_attr].attr_name}</div>
             </div>
           </div>
@@ -94,11 +88,11 @@
         <video
           poster={getHeroAnimation(hero.name, "png")}
           autoplay loop preload="auto"
-          class="scale-125"
+          class="scale-125" draggable="false"
         >
           <track kind="captions">
           <source src={getHeroAnimation(hero.name)} type="video/webm">
-          <img src={getHeroAnimation(hero.name, "png")} alt="">
+          <img src={getHeroAnimation(hero.name, "png")} alt="" draggable="false">
         </video>
       </div>
     </div>
@@ -106,7 +100,7 @@
       <div class="flex flex-col items-center">
         <div class="flex">
           <div class="flex flex-col w-[150px] h-fit z-[3]">
-            <img src={getHeroThumbnail(hero.name)} alt="">
+            <img src={getHeroThumbnail(hero.name)} alt="" draggable="false">
             <div
               class="relative flex items-center font-radiance font-semibold"
               style="background: linear-gradient(to right, #286323, #7AF03C);"
@@ -138,21 +132,21 @@
           </div>
           <div class="px-14 space-y-3">
             <div class="flex items-center space-x-2">
-              <img src={FILTER[0].attr_hero} alt="" width="30">
+              <img src={FILTER[0].attr_hero} alt="" width="30" draggable="false">
               <div class="font-reaver font-semibold text-xl">
                 {hero.str_base}
               </div>
               <div class="font-radiance text-sm text-[#999]">+{hero.str_gain}</div>
             </div>
             <div class="flex items-center space-x-2">
-              <img src={FILTER[1].attr_hero} alt="" width="30">
+              <img src={FILTER[1].attr_hero} alt="" width="30" draggable="false">
               <div class="font-reaver font-semibold text-xl">
                 {hero.agi_base}
               </div>
               <div class="font-radiance text-sm text-[#999]">+{hero.agi_gain}</div>
             </div>
             <div class="flex items-center space-x-2">
-              <img src={FILTER[2].attr_hero} alt="" width="30">
+              <img src={FILTER[2].attr_hero} alt="" width="30" draggable="false">
               <div class="font-reaver font-semibold text-xl">
                 {hero.int_base}
               </div>
@@ -269,28 +263,35 @@
               <div class="flex space-x-2">
                 <img
                   src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/stats/icon_damage.png"
-                  alt="" width="24"
+                  alt="" width="24" draggable="false"
                 >
-                <div class="font-light">{48 + hero.damage_min}-{48 + hero.damage_max}</div>
+                <div class="font-light">
+                  <!-- IDK why Bane's (ID: 3) damage_min and damage_max has incorrect value. So, I'll just guess for the logic. -->
+                  {
+                    hero.damage_min <= 10 && hero.damage_max <= 10 ?
+                    `${48 + hero.damage_min}-${48 + hero.damage_max}` :
+                    `${hero.damage_min}-${hero.damage_max}`
+                  }
+                </div>
               </div>
               <div class="flex space-x-2">
                 <img
                   src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/stats/icon_attack_time.png"
-                  alt="" width="24"
+                  alt="" width="24" draggable="false"
                 >
                 <div class="font-light">{hero.attack_rate}</div>
               </div>
               <div class="flex space-x-2">
                 <img
                   src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/stats/icon_attack_range.png"
-                  alt="" width="24"
+                  alt="" width="24" draggable="false"
                 >
                 <div class="font-light">{hero.attack_range}</div>
               </div>
               <div class="flex space-x-2">
                 <img
                   src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/stats/icon_projectile_speed.png"
-                  alt="" width="24"
+                  alt="" width="24" draggable="false"
                 >
                 <div class="font-light">{hero.projectile_speed}</div>
               </div>
@@ -302,14 +303,14 @@
               <div class="flex space-x-2">
                 <img
                   src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/stats/icon_armor.png"
-                  alt="" width="24"
+                  alt="" width="24" draggable="false"
                 >
                 <div class="font-light">{hero.armor.toFixed(1)}</div>
               </div>
               <div class="flex space-x-2">
                 <img
                   src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/stats/icon_magic_resist.png"
-                  alt="" width="24"
+                  alt="" width="24" draggable="false"
                 >
                 <div class="font-light">{hero.magic_resistance}%</div>
               </div>
@@ -321,7 +322,7 @@
               <div class="flex space-x-2">
                 <img
                   src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/stats/icon_movement_speed.png"
-                  alt="" width="24"
+                  alt="" width="24" draggable="false"
                 >
                 <div class="font-light">{hero.movement_speed}</div>
               </div>
@@ -330,7 +331,7 @@
               <div class="flex space-x-2">
                 <img
                   src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/stats/icon_turn_rate.png"
-                  alt="" width="24"
+                  alt="" width="24" draggable="false"
                 >
                 <div class="font-light">{hero.turn_rate}</div>
               </div>
@@ -339,7 +340,7 @@
               <div class="flex space-x-2">
                 <img
                   src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/stats/icon_vision.png"
-                  alt="" width="24"
+                  alt="" width="24" draggable="false"
                 >
                 <div class="font-light">{hero.sight_range_day}/{hero.sight_range_night}</div>
               </div>
