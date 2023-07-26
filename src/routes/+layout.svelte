@@ -3,6 +3,7 @@
   import Navigations from "$components/Navigations.svelte";
   import { onMount } from "svelte";
 
+
   const playlist = [
     "/audio/lobby_music_orchestra.mp3",
     "/audio/lobby_music_flutte.webm",
@@ -13,13 +14,11 @@
   let song: HTMLAudioElement | null = null;
 
   const next = () => {
-    console.log("next:", songIndex)
     if (songIndex === playlist.length - 1) {
         songIndex = 0;
     } else {
         songIndex++;
     }
-    console.log("next:", songIndex)
     play();
   }
 
@@ -27,7 +26,6 @@
     if(song?.paused) {
       song.src = playlist[songIndex];
       song?.play();
-      console.log("Playing:", playlist[songIndex]);
     }
   }
 
@@ -35,7 +33,6 @@
     song = new Audio();
     song.addEventListener("ended", next, false);
     play();
-    console.log(song)
   })
 </script>
 
