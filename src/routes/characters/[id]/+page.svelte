@@ -358,6 +358,10 @@
 
 
 <style>
+  :global(b) {
+    @apply text-orange-500;
+  }
+
   .bg-stats {
     background: linear-gradient(80deg, #252728 0%, #101415 100%);
   }
