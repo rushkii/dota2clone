@@ -22,7 +22,7 @@ export const getHeroAbility = (heroName: string, abilityName: string, isVideo: b
     extraEndpoint = "";
   } else {
     endpoint = "videos"
-    extraEndpoint = `${heroName.toLowerCase()}/`
+    extraEndpoint = `${heroName.replace("npc_dota_hero_", "")}/`
   }
 
   return `https://cdn.cloudflare.steamstatic.com/apps/dota2/${endpoint}/dota_react/abilities/${extraEndpoint}${abilityName.toLowerCase()}.${extension}`
