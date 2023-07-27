@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Ability, HeroDetail } from "$types";
-	import { getHeroAbility } from "$lib";
+	import { getHeroAbility, getTransformedValue } from "$lib";
 	import { onMount } from "svelte";
 
 
@@ -41,8 +41,11 @@
   >
   <div
     class="absolute w-[300px] {openAbility? "block": "hidden"}"
-    style="transform: translateY(-100%) translateY(-15px);
+    style="transform: translateY(-100%);
           filter: drop-shadow(2px 2px 8px black);"
+    aria-hidden
+    on:mouseenter={() => {openAbility = true; playVideo()}}
+    on:mouseleave={() => {openAbility = false; pauseVideo()}}
   >
     <div
       class="w-[300px] bg-black min-h-0 flex flex-col text-left polygon-abilities"
@@ -53,11 +56,11 @@
       >
         <video
           loop muted preload="none" draggable="false" class="ability-video w-full h-full"
-          poster={getHeroAbility(hero.name_loc, data.name, false, "jpg")}
+          poster={getHeroAbility(hero.name, data.name, true, "jpg")}
         >
           <track kind="captions"/>
-          <source type="video/webm" src={getHeroAbility(hero.name_loc, data.name, true, "webm")}>
-          <source type="video/mp4" src={getHeroAbility(hero.name_loc, data.name, true, "mp4")}>
+          <source type="video/webm" src={getHeroAbility(hero.name, data.name, true, "webm")}>
+          <source type="video/mp4" src={getHeroAbility(hero.name, data.name, true, "mp4")}>
         </video>
       </div>
       <div
@@ -67,8 +70,8 @@
         <div class="font-reaver text-xl font-bold tracking-[2px] uppercase">
           {data.name_loc}
         </div>
-        <div class="font-radiance mt-1 text-[#ddd] font-semibold">
-          {data.desc_loc}
+        <div class="font-radiance mt-1 text-[#ddd] font-semibold overflow-y-auto max-h-[150px]">
+          {@html getTransformedValue(data.desc_loc, data)}
         </div>
       </div>
     </div>
