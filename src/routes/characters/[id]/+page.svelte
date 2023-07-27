@@ -111,8 +111,10 @@
             >
             <div
               class="absolute w-[300px] {openAbility? "block": "hidden"}"
-              style="transform: translateY(-100%) translateY(-20px) translateX(-100px);
+              style="transform: translateY(-100%) translateX(-100px);
                     filter: drop-shadow(2px 2px 8px black);"
+              aria-hidden
+              on:mouseenter={() => openAbility = true} on:mouseleave={() => openAbility = false}
             >
               <div
                 class="w-[500px] bg-black min-h-0 flex flex-col text-left polygon-abilities"
