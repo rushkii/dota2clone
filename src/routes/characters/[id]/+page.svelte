@@ -101,14 +101,14 @@
         </video>
       </div>
       <div class="absolute bottom-7 right-32 flex flex-col items-center">
-        <div class="font-radiance font-semibold tracking-widest text-lg uppercase mb-1">
+        <div class="font-radiance font-semibold tracking-widest text-lg uppercase mb-1 select-none">
           Abilities
         </div>
         <div class="flex items-center">
           <div class="flex flex-col items-center relative mr-5">
             <img
               src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/talents.svg"
-              alt="" width="60" aria-hidden
+              alt="" width="60" aria-hidden draggable="false"
               class="transition duration-200 hover:scale-110 cursor-pointer"
               on:mouseenter={() => openAbility = true} on:mouseleave={() => openAbility = false}
             >
@@ -126,7 +126,7 @@
                   class="flex flex-col gap-3 p-5 pb-10"
                   style="background: linear-gradient(150deg, #68727C, #14171A);"
                 >
-                  <div class="font-reaver text-xl font-semibold tracking-widest uppercase text-center">
+                  <div class="font-reaver text-xl font-semibold tracking-widest uppercase text-center select-none">
                     Talent Tree
                   </div>
                 </div>
@@ -199,7 +199,7 @@
             </div>
           </div>
         </div>
-        <div class="pt-5 font-radiance text-xl uppercase text-[#959595] tracking-widest">
+        <div class="pt-5 font-radiance text-xl uppercase text-[#959595] tracking-widest select-none">
           Attributes
         </div>
       </div>
@@ -218,14 +218,14 @@
             </div>
           {/each}
         </div>
-        <div class="pt-5 font-radiance text-xl uppercase text-[#959595] tracking-widest">
+        <div class="pt-5 font-radiance text-xl uppercase text-[#959595] tracking-widest select-none">
           Roles
         </div>
       </div>
       <div class="flex flex-col items-center">
         <div class="flex justify-between font-radiance font-semibold w-[400px]">
           <div class="flex flex-col uppercase">
-            <div class="text-[#969696] tracking-wider">Attack</div>
+            <div class="text-[#969696] tracking-wider select-none">Attack</div>
             <div class="pt-2 space-y-2">
               <div class="flex space-x-2">
                 <img
@@ -258,7 +258,7 @@
             </div>
           </div>
           <div class="flex flex-col uppercase">
-            <div class="text-[#969696] tracking-wider">Defense</div>
+            <div class="text-[#969696] tracking-wider select-none">Defense</div>
             <div class="pt-2 space-y-2">
               <div class="flex space-x-2">
                 <img
@@ -277,7 +277,7 @@
             </div>
           </div>
           <div class="flex flex-col uppercase">
-            <div class="text-[#969696] tracking-wider">Mobility</div>
+            <div class="text-[#969696] tracking-wider select-none">Mobility</div>
             <div class="pt-2 space-y-2">
               <div class="flex space-x-2">
                 <img
@@ -307,7 +307,7 @@
             </div>
           </div>
         </div>
-        <div class="pt-5 font-radiance text-xl uppercase text-[#959595] tracking-widest">
+        <div class="pt-5 font-radiance text-xl uppercase text-[#959595] tracking-widest select-none">
           Stats
         </div>
       </div>

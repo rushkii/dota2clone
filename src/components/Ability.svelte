@@ -35,7 +35,7 @@
     src={getHeroAbility(hero.name_loc, data.name, false, "png")} alt=""
     class="transition duration-200 hover:scale-110 cursor-pointer"
     style="box-shadow: 0px 0px 20px #000, 0px 0px 20px #000;"
-    width="75" aria-hidden
+    width="75" aria-hidden draggable="false"
     on:mouseenter={() => {openAbility = true; playVideo()}}
     on:mouseleave={() => {openAbility = false; pauseVideo()}}
   >
