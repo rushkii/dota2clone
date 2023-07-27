@@ -33,7 +33,7 @@ export const getHeroAbility = (heroName: string, abilityName: string, isVideo: b
 const findAbilityValuesFloat = (data: Ability, match: string, placeholder: string) => {
   const item = data.special_values.find((entry) => entry.name === placeholder);
   if (item && item.values_float && item.values_float.length > 0) {
-    return item.values_float[0].toString();
+    return `<b>${item.values_float[0].toString()}</b>`;
   }
   return match; // If the placeholder is not found or has no valid value, return the original match.
 }
