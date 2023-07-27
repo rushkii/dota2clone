@@ -2,11 +2,13 @@
   import { ROLES, FILTER, ROLE_LEVELS_WIDTH, getHeroAnimation, getHeroAttackType, getHeroThumbnail } from "$lib";
   import type { HeroDetail } from "$types";
   import type { PageData } from "./$types";
+  import Ability from "$components/Ability.svelte";
 
 
   export let data: PageData;
   let dataPromise: Promise<HeroDetail>;
   let readStory: boolean = false;
+  let openAbility: boolean = false;
 
   const getDetail = async () => {
     const req = await fetch(`/api/characters/detail?id=${data.id}`)
@@ -94,6 +96,44 @@
           <source src={getHeroAnimation(hero.name)} type="video/webm">
           <img src={getHeroAnimation(hero.name, "png")} alt="" draggable="false">
         </video>
+      </div>
+      <div class="absolute bottom-7 right-32 flex flex-col items-center">
+        <div class="font-radiance font-semibold tracking-widest text-lg uppercase mb-1">
+          Abilities
+        </div>
+        <div class="flex items-center">
+          <div class="flex flex-col items-center relative mr-5">
+            <img
+              src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/talents.svg"
+              alt="" width="60" aria-hidden
+              class="transition duration-200 hover:scale-110 cursor-pointer"
+              on:mouseenter={() => openAbility = true} on:mouseleave={() => openAbility = false}
+            >
+            <div
+              class="absolute w-[300px] {openAbility? "block": "hidden"}"
+              style="transform: translateY(-100%) translateY(-20px) translateX(-100px);
+                    filter: drop-shadow(2px 2px 8px black);"
+            >
+              <div
+                class="w-[500px] bg-black min-h-0 flex flex-col text-left polygon-abilities"
+              >
+                <div
+                  class="flex flex-col gap-3 p-5 pb-10"
+                  style="background: linear-gradient(150deg, #68727C, #14171A);"
+                >
+                  <div class="font-reaver text-xl font-semibold tracking-widest uppercase text-center">
+                    Talent Tree
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex space-x-3">
+            {#each hero.abilities as ability, index}
+              <Ability data={ability} hero={hero} index={index}/>
+            {/each}
+          </div>
+        </div>
       </div>
     </div>
     <div class="flex bg-stats justify-evenly py-5 border-y-2 border-t-[#282828] border-b-[#2c2e2e] shadow-stats z-[2]">
@@ -284,6 +324,10 @@
     @apply text-orange-500;
   }
 
+  :global(.polygon-abilities) {
+    clip-path: polygon(0px 0px, 0px calc(100% - 20px), calc(50% - 20px) calc(100% - 20px), 50% 100%, calc(50% + 20px) calc(100% - 20px), 100% calc(100% - 20px), 100% 0px);
+  }
+
   .bg-stats {
     background: linear-gradient(80deg, #252728 0%, #101415 100%);
   }
@@ -346,8 +390,13 @@
   }
 
   @keyframes fadeComplexity {
+    from {
+      background: transparent;
+      transform: rotate(45deg) scaleX(3) scaleY(3);
+    }
     to {
       background: white;
+      transform: rotate(45deg) scaleX(1) scaleY(1);
     }
   }
 </style>
