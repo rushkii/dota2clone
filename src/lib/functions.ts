@@ -10,6 +10,17 @@ export const getHeroAnimation = (name: string, extension: string = "webm") => {
   return `https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${name.replace("npc_dota_hero_", "")}.${extension}`
 }
 
-export const getHeroAbility = (name: string) => {
-  return `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/${name}.png`
+export const getHeroAbility = (heroName: string, abilityName: string, isVideo: boolean, extension: string = "webm") => {
+  let endpoint: string;
+  let extraEndpoint: string;
+
+  if(!isVideo) {
+    endpoint = "images";
+    extraEndpoint = "";
+  } else {
+    endpoint = "videos"
+    extraEndpoint = `${heroName.toLowerCase()}/`
+  }
+
+  return `https://cdn.cloudflare.steamstatic.com/apps/dota2/${endpoint}/dota_react/abilities/${extraEndpoint}${abilityName.toLowerCase()}.${extension}`
 }
