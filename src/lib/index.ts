@@ -1,7 +1,7 @@
 import { FILTER, ALLOWED_ASCII, ROLE_LEVELS_WIDTH, ROLES } from "./constants";
 import {
   getHeroThumbnail, getHeroAttackType, getHeroAnimation,
-  getHeroAbility, getTransformedValue, calculateUniversalAttack
+  getHeroAbility, getTransformedValue, calculateAttack
 } from "./functions";
 
 
@@ -15,5 +15,5 @@ export {
   getHeroAnimation,
   getHeroAbility,
   getTransformedValue,
-  calculateUniversalAttack
+  calculateAttack
 };

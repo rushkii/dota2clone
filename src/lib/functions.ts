@@ -44,12 +44,19 @@ export const getTransformedValue = (description: string , data: Ability) => {
 }
 
 
-export const calculateUniversalAttack = (hero: HeroDetail) => {
+export const calculateAttack = (hero: HeroDetail) => {
   let result: string;
 
   if(hero.primary_attr === 3) {
+    // Calculate universal hero attack based on the sum of all hero attributes
+    // and multiply by 0.7, every universal heroes gain 0.7 base damage for each attributes.
+
+    // Formula reference: https://t.me/teknologi_umum_v2/406244
+    //                    https://t.me/teknologi_umum_v2/406239
+
     const baseAttr = (hero.str_base + hero.agi_base + hero.int_base) * 0.7;
     result = `${Number.parseInt(`${baseAttr + hero.damage_min}`)}-${Number.parseInt(`${baseAttr + hero.damage_max}`)}`;
+
   } else {
     result = `${hero.damage_min}-${hero.damage_max}`;
   }
