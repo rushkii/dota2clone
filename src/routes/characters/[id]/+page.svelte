@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ROLES, FILTER, ROLE_LEVELS_WIDTH, getHeroAnimation, getHeroAttackType, getHeroThumbnail } from "$lib";
+  import { ROLES, FILTER, ROLE_LEVELS_WIDTH, getHeroAnimation, getHeroAttackType, getHeroThumbnail, calculateUniversalAttack } from "$lib";
   import type { HeroDetail } from "$types";
   import type { PageData } from "./$types";
   import Ability from "$components/Ability.svelte";
@@ -229,14 +229,7 @@
                   src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/stats/icon_damage.png"
                   alt="" width="24" draggable="false"
                 >
-                <div class="font-light">
-                  <!-- IDK why Bane's (ID: 3) damage_min and damage_max has incorrect value. So, I'll just guess for the logic. -->
-                  {
-                    hero.damage_min <= 10 && hero.damage_max <= 10 ?
-                    `${48 + hero.damage_min}-${48 + hero.damage_max}` :
-                    `${hero.damage_min}-${hero.damage_max}`
-                  }
-                </div>
+                <div class="font-light">{calculateUniversalAttack(hero)}</div>
               </div>
               <div class="flex space-x-2">
                 <img
