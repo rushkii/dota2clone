@@ -31,7 +31,7 @@ export const getHeroAbility = (heroName: string, abilityName: string, isVideo: b
 // Function to transform abilitiy description that containing like %placeholder_name%
 // with a values_float from the special_values data containing that placeholder_name.
 const findAbilityValuesFloat = (data: Ability, match: string, placeholder: string) => {
-  const item = data.special_values.find((entry) => entry.name === placeholder);
+  const item = data.special_values.find((entry) => entry.name.toLowerCase() === placeholder.toLowerCase());
   if (item && item.values_float && item.values_float.length > 0) {
     return `<b>${item.values_float[0].toString()}</b>`;
   }
@@ -39,5 +39,6 @@ const findAbilityValuesFloat = (data: Ability, match: string, placeholder: strin
 }
 
 export const getTransformedValue = (description: string , data: Ability) => {
+  description = description.replaceAll("%%%", "%%");
   return description.replace(/%([a-zA-Z_]+)%/g, (match, placeholder) => findAbilityValuesFloat(data, match, placeholder));
 }
