@@ -1,4 +1,4 @@
-import type { Ability } from "$types";
+import type { Ability, HeroDetail } from "$types";
 
 
 export const getHeroThumbnail = (name: string) => {
@@ -41,4 +41,18 @@ const findAbilityValuesFloat = (data: Ability, match: string, placeholder: strin
 export const getTransformedValue = (description: string , data: Ability) => {
   description = description.replaceAll("%%%", "%%");
   return description.replace(/%([a-zA-Z_]+)%/g, (match, placeholder) => findAbilityValuesFloat(data, match, placeholder));
+}
+
+
+export const calculateUniversalAttack = (hero: HeroDetail) => {
+  let result: string;
+
+  if(hero.primary_attr === 3) {
+    const baseAttr = (hero.str_base + hero.agi_base + hero.int_base) * 0.7;
+    result = `${Number.parseInt(`${baseAttr + hero.damage_min}`)}-${Number.parseInt(`${baseAttr + hero.damage_max}`)}`;
+  } else {
+    result = `${hero.damage_min}-${hero.damage_max}`;
+  }
+
+  return result;
 }
