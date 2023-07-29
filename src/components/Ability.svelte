@@ -24,13 +24,16 @@
   }
 
   onMount(() => {
-    abilityVideo = document.getElementsByClassName("ability-video")[index] as HTMLVideoElement;
+    if(!data.ability_is_granted_by_scepter && !data.ability_is_granted_by_shard) {
+      // We don't need to assign this value since it doesn't meet the requirement.
+      abilityVideo = document.getElementsByClassName("ability-video")[index] as HTMLVideoElement;
+    }
   })
 
 </script>
 
 
-<div class="flex flex-col items-center relative">
+<div class="flex flex-col items-center relative {!data.ability_is_granted_by_scepter && !data.ability_is_granted_by_shard? "block" : "hidden"}">
   <img
     src={getHeroAbility(hero.name_loc, data.name, false, "png")} alt=""
     class="transition duration-200 hover:scale-110 cursor-pointer"
