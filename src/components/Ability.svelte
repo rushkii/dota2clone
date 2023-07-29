@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Ability, HeroDetail } from "$types";
-	import { getHeroAbility, getTransformedValue } from "$lib";
+	import { FILTER, getHeroAbility, getTransformedValue } from "$lib";
 	import { onMount } from "svelte";
 
 
@@ -73,7 +73,7 @@
         <div class="font-reaver text-xl font-bold tracking-[2px] uppercase">
           {data.name_loc}
         </div>
-        <div class="font-radiance mt-1 text-[#ddd] font-semibold overflow-y-auto max-h-[150px]">
+        <div class="font-radiance mt-1 text-[#ddd] font-semibold overflow-y-auto max-h-[150px] {FILTER[hero.primary_attr].attr_name}">
           {@html getTransformedValue(data.desc_loc, data)}
         </div>
       </div>
