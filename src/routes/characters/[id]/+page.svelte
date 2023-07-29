@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="space-y-1 font-radiance">
-          <div class="{readStory? "text-lg": "text-2xl"} text-[#eee] font-medium overflow-y-auto max-h-[210px]">
+          <div class="{readStory? "text-lg": "text-2xl"} text-[#eee] font-medium overflow-y-auto max-h-[210px] {FILTER[hero.primary_attr].attr_name}">
             {@html readStory? hero.bio_loc : hero.hype_loc}
           </div>
           <div
@@ -318,8 +318,20 @@
 
 
 <style>
-  :global(b) {
-    @apply text-orange-500;
+  :global(.Strength > b) {
+   color: #EC3D06;
+  }
+
+  :global(.Agility > b) {
+    color: #26E030;
+  }
+
+  :global(.Intelligence > b) {
+    color: #02CADC;
+  }
+
+  :global(.Universal > b) {
+    color: #cd74ff;;
   }
 
   :global(.polygon-abilities) {
