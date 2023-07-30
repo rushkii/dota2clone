@@ -203,8 +203,9 @@
           Attributes
         </div>
       </div>
-      <div class="flex flex-col items-center px-10 border-x border-x-[#4f4f4f]">
-        <div class="flex flex-wrap max-w-md gap-4">
+      <div class="w-[1px] max-h-full bg-[#4f4f4f] rounded-t-lg rounded-b-lg"/>
+      <div class="flex flex-col items-center">
+        <div class="flex flex-wrap justify-center max-w-md gap-4">
           {#each ROLES as role, index}
             <div class="flex flex-col w-[30%] h-[35px]">
               <div class="font-radiance font-semibold select-none">{role}</div>
@@ -222,6 +223,7 @@
           Roles
         </div>
       </div>
+      <div class="w-[1px] max-h-full bg-[#4f4f4f] rounded-t-lg rounded-b-lg"/>
       <div class="flex flex-col items-center">
         <div class="flex justify-between font-radiance font-semibold w-[400px]">
           <div class="flex flex-col uppercase">
