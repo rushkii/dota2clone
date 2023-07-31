@@ -1,6 +1,6 @@
 <script lang="ts">
   import HeroBox from "$components/HeroBox.svelte";
-  import { ALLOWED_ASCII, FILTER } from "$lib";
+  import { FILTER } from "$lib";
   import type { HeroPreview } from "$types";
   import type { PageServerData } from "./$types";
 
@@ -9,7 +9,6 @@
   let search: string = "";
   let filtAttr: number | null = null;
   let filtComp: number | null = null;
-  let selectAll: boolean = false;
 
   // Sort heroes data by ascending alphabetically.
   let heroes = data.heroes.sort((prev: HeroPreview, next: HeroPreview) => {
@@ -21,35 +20,6 @@
 
     return (a < b) ? -1 : (a > b) ? 1 : 0;
   })
-
-  // Keyboard keypress event.
-  const onKeyDown = (e: KeyboardEvent) => {
-    // Check if pressed key containing alphabet and only accept shift key.
-    if(
-      (ALLOWED_ASCII.includes(e.key.toLowerCase()) && e.shiftKey) ||
-      (ALLOWED_ASCII.includes(e.key.toLowerCase()) && !(e.ctrlKey || e.altKey))
-    ) {
-      // If condition are met, then append string the pressed key.
-      search += e.key.toLowerCase();
-      selectAll = false
-    }
-
-    //  Check if CTRL + A or select all met this condition.
-    if(e.key === "a" && e.ctrlKey) {
-      selectAll = true;
-    }
-
-    // Remove a character one-by-one from searched hero.
-    if(e.key === "Backspace") {
-      search = search.substring(0, search.length - 1);
-    }
-
-    // Select all then delete searched hero, just like CTRL + A -> Backspace.
-    if(e.key === "Backspace" && selectAll) {
-      search = "";
-      selectAll = false;
-    }
-  }
 
   const selectFilterAttr = (index: number) => {
     filtAttr = index === filtAttr ? null : index;
@@ -112,13 +82,14 @@
       </div>
     </div>
 
+    <div class="bg-[#00000054] backdrop-blur-md dark:backdrop-blur-none flex border-gradient transition ease-in-out duration-150 h-[40px]">
+      <input type="text" bind:value={search} placeholder="Search hero"
+        class="bg-transparent outline-none border-none w-[12em] text-center px-3 placeholder:text-sm placeholder:text-[#96a0ae] font-semibold placeholder:font-light uppercase"
+      >
+    </div>
+
   </div>
 
-  <div class="flex justify-center text-2xl font-reaver font-semibold uppercase">
-    <div class="{selectAll && search.length > 0 ? "bg-gray-400": ""} w-max px-1 rounded-sm">
-      {search}
-    </div>
-  </div>
 
   <!-- Display heroes with flex wrap.  -->
   <div class="flex flex-wrap justify-center items-center gap-4" data-sveltekit-preload-data="off"> <!-- grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 -->
@@ -129,18 +100,15 @@
 
 </div>
 
+
 <svelte:head>
   <title>Dota 2 Clone | Heroes</title>
 </svelte:head>
 
-<!-- Keyboard keypress event. -->
-<svelte:window on:keydown|preventDefault={onKeyDown} />
-
 
 <style>
   .border-gradient {
-    @apply border;
-    border-style: solid;
+    border: 1px solid;
     border-image:
     linear-gradient(
       193deg,
