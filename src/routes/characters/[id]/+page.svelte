@@ -33,13 +33,13 @@
 <div class="overflow-hidden">
   {#await dataPromise then hero}
     <div class="relative 2lg:px-[3.4rem] xl:px-[4.4rem] h-[70vh] xl:h-[80vh] overflow-hidden">
-      <div class="absolute bottom-5 xl:bottom-7 left-12 lg:left-28 xl:right-32 flex flex-col items-center xl:items-end z-[9999]">
+      <div class="absolute bottom-5 xl:bottom-7 left-0 lg:left-28 xl:right-32 flex flex-col w-full lg:w-auto xl:w-auto items-center xl:items-end z-[9999]">
         <div class="flex flex-col items-center">
           <div class="font-radiance font-semibold tracking-widest text-lg uppercase mb-1 select-none">
             Abilities
           </div>
           <div class="flex items-center">
-            <div class="flex flex-col items-center relative mr-5">
+            <div class="flex flex-col items-center relative mr-2 lg:mr-4 xl:mr-5">
               <img
                 src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/talents.svg"
                 alt="" aria-hidden draggable="false"
@@ -67,7 +67,7 @@
                 </div>
               </div>
             </div>
-            <div class="flex space-x-3">
+            <div class="flex space-x-2 lg:space-x-3 xl:space-x-3">
               {#each hero.abilities as ability, index}
                 <Ability data={ability} hero={hero} index={index}/>
               {/each}
