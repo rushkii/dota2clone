@@ -64,14 +64,6 @@
 
 
 :root {
-  color: black;
+  color: white;
   background-color: black;
-}
-
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: white;
-    background-color: black;
-  }
 }
