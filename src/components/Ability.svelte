@@ -36,9 +36,9 @@
 <div class="flex flex-col items-center relative {!data.ability_is_granted_by_scepter && !data.ability_is_granted_by_shard? "block" : "hidden"}">
   <img
     src={getHeroAbility(hero.name_loc, data.name, false, "png")} alt=""
-    class="transition duration-200 hover:scale-110 cursor-pointer"
+    class="w-[45px] lg:w-[60px] xl:w-[75px] transition duration-200 hover:scale-110 cursor-pointer"
     style="box-shadow: 0px 0px 20px #000, 0px 0px 20px #000;"
-    width="75" aria-hidden draggable="false"
+    aria-hidden draggable="false"
     on:mouseenter={() => {openAbility = true; playVideo()}}
     on:mouseleave={() => {openAbility = false; pauseVideo()}}
   >
