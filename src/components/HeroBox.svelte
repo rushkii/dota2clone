@@ -24,7 +24,7 @@
   <div class="flex space-x-1 xl:space-x-2 absolute top-1 right-2 xl:top-2 xl:right-2">
     {#each Array(3) as _, i}
       <div
-        class="transition group-hover:translate-y-0 -translate-y-8 duration-300"
+        class="transition xl:group-hover:translate-y-0 translate-y-0 lg:-translate-y-8 xl:-translate-y-8 duration-300"
         style="transition-delay: {(i + 1) * 8}0ms;
               filter: drop-shadow(-1px 1px 1px black);"
       >
@@ -32,7 +32,7 @@
       </div>
     {/each}
   </div>
-  <div class="flex items-center absolute bottom-1 group-hover:translate-y-0 group-hover:opacity-100 group-hover:scale-100 translate-y-8 opacity-0 scale-70 transition duration-300 px-1 xl:px-3 space-x-2">
+  <div class="flex items-center absolute bottom-1 xl:group-hover:translate-y-0 xl:group-hover:opacity-100 group-hover:scale-100 translate-y-0 lg:translate-y-8 xl:translate-y-8 opacity-100 lg:opacity-0 xl:opacity-0 scale-70 transition duration-300 px-1 xl:px-3 space-x-2">
     <img
       src="{FILTER[hero.primary_attr].attr_hero}" alt=""
       class="w-[25px] xl:w-[40px]"
@@ -42,7 +42,7 @@
     </div>
   </div>
   <div
-    class="absolute bottom-0 w-[256px] h-[70px] -z-50 transition duration-300 group-hover:opacity-100 opacity-0"
+    class="absolute bottom-0 w-[256px] h-[70px] -z-50 transition duration-300 xl:group-hover:opacity-100 opacity-100 lg:opacity-0 xl:opacity-0"
     style="background: linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, .7) 60%, rgba(0, 0, 0, .9) 80%);"
   />
 </a>
